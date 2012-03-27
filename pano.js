@@ -32,7 +32,6 @@ function init_pano(canvasId, image){
   window.onmouseup = mouseUp;
   window.onmousewheel = mouseScroll;
   window.onkeydown = keyDown;
-  draw();
   //setInterval(draw, 1000/FPS);
 
   img.src = image;
@@ -51,6 +50,8 @@ function imageLoaded(){
 
   //get pixels
   source = buffer_ctx.getImageData(0, 0, buffer.width, buffer.height);
+
+  draw();
 }
 
 function mouseDown(e){
