@@ -36,6 +36,10 @@ function init_pano(canvasId, image){
   img.src = image;
 }
 
+function setImage(imageData) {
+  img.src = imageData;
+}
+
 function imageLoaded(){
   var buffer = document.createElement("canvas");
   var buffer_ctx = buffer.getContext("2d");
