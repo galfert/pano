@@ -56,8 +56,8 @@ function imageLoaded(){
 
 function mouseDown(e){
   mouseIsDown = true;
-  mouseDownPosLastXa = e.clientX;
-  mouseDownPosLastYa = e.clientY;
+  mouseDownPosLastX = e.clientX;
+  mouseDownPosLastY = e.clientY;
 }
 
 function mouseMove(e){
