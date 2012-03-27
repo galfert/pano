@@ -4,6 +4,7 @@ var DEG2RAD = Math.PI/180.0;
 //Canvas to which to draw the panorama
 var pano_canvas = null;
 var target = null;
+var source = null;
 
 //Event state
 var mouseIsDown = false;
