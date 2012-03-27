@@ -32,7 +32,6 @@ function init_pano(canvasId, image){
   window.onmouseup = mouseUp;
   window.onmousewheel = mouseScroll;
   window.onkeydown = keyDown;
-  //setInterval(draw, 1000/FPS);
 
   img.src = image;
 }
@@ -337,7 +336,6 @@ function draw(){
 
       ctx = pano_canvas.getContext("2d");
       target = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      console.log('target ' + target);
     }
 
     //render paromana direct
