@@ -23,11 +23,10 @@ var cam_fov = 90;
 var img_buffer = null;
 var img = new Image();
 img.onload = imageLoaded;
-img.src = 'test.jpg';
 
-function init_pano(canvasid){
-  //get canvas and set up call backs
-  pano_canvas = document.getElementById('canvas');
+function init_pano(canvasId, image){
+  //get canvas and set up callbacks
+  pano_canvas = document.getElementById(canvasId);
   pano_canvas.onmousedown = mouseDown;
   window.onmousemove = mouseMove;
   window.onmouseup = mouseUp;
@@ -35,6 +34,8 @@ function init_pano(canvasid){
   window.onkeydown = keyDown;
   draw();
   //setInterval(draw, 1000/FPS);
+
+  img.src = image;
 }
 
 function imageLoaded(){
