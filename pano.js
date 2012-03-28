@@ -1,5 +1,6 @@
 var FPS = 30;
 var DEG2RAD = Math.PI/180.0;
+var widthToHeight = 4 / 3;
 
 //Canvas to which to draw the panorama
 var pano_canvas = null;
@@ -33,7 +34,36 @@ function init_pano(canvasId, image){
   window.onmousewheel = mouseScroll;
   window.onkeydown = keyDown;
 
+  window.addEventListener('resize', resizeCanvas, false);
+  window.addEventListener('orientationchange', resizeCanvas, false);
+
   img.src = image;
+}
+
+function resizeCanvas() {
+  var container = document.getElementById('container');
+  var newWidth = window.innerWidth;
+  var newHeight = window.innerHeight;
+  var newWidthToHeight = newWidth / newHeight;
+
+  if (newWidthToHeight > widthToHeight) {
+    newWidth = newHeight * widthToHeight;
+    container.style.height = newHeight + 'px';
+    container.style.width = newWidth + 'px';
+  } else {
+    newHeight = newWidth / widthToHeight;
+    container.style.height = newHeight + 'px';
+    container.style.width = newWidth + 'px';
+  }
+
+  container.style.marginTop = (-newHeight / 2) + 'px';
+  container.style.marginLeft = (-newWidth / 2) + 'px';
+
+  pano_canvas.width = newWidth;
+  pano_canvas.height = newHeight;
+
+  target = null;
+  draw();
 }
 
 function setImage(imageData) {
@@ -54,7 +84,7 @@ function imageLoaded(){
   //get pixels
   source = buffer_ctx.getImageData(0, 0, buffer.width, buffer.height);
 
-  draw();
+  resizeCanvas();
 }
 
 function mouseDown(e){
@@ -315,7 +345,7 @@ function renderPanorama(canvas){
   }
 }
 
-function drawRoundedRect(ctx,ox,oy,w,h,radius){
+function drawRoundedRect(ctx, ox, oy, w, h, radius){
   ctx.beginPath();
   ctx.moveTo(ox + radius,oy);
   ctx.lineTo(ox + w - radius,oy);
@@ -339,7 +369,7 @@ function draw(){
       ctx.fillRect(0, 0, pano_canvas.width, pano_canvas.height);
 
       ctx = pano_canvas.getContext("2d");
-      target = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      target = ctx.getImageData(0, 0, pano_canvas.width, pano_canvas.height);
     }
 
     //render paromana direct
