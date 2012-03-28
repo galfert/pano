@@ -3,6 +3,10 @@ var progress = null;
 function init_fileupload(inputId) {
   document.getElementById(inputId).addEventListener('change', handleFileSelect, false);
   progress = document.querySelector('.percent');
+
+  var dropZone = document.getElementById('canvas');
+  dropZone.addEventListener('dragover', handleDragOver, false);
+  dropZone.addEventListener('drop', handleFileSelect, false);
 }
 
 function setProgress(percent) {
@@ -21,10 +25,12 @@ function updateProgress(event) {
 }
 
 function handleFileSelect(event) {
-  console.log(event);
+  event.stopPropagation();
+  event.preventDefault();
+
   setProgress(0);
 
-  var file = event.target.files[0];
+  var file = event.dataTransfer.files[0];
 
   if (file.type.match('image.*')) {
     var reader = new FileReader();
@@ -47,4 +53,10 @@ function handleFileSelect(event) {
     reader.readAsDataURL(file);
     // reader.readAsBinaryString(file);
   }
+}
+
+function handleDragOver(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'copy';
 }
