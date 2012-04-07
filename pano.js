@@ -1,7 +1,7 @@
 var FPS = 30;
 var DEG2RAD = Math.PI/180.0;
-var widthToHeight = 4 / 3;
-// var widthToHeight = 16 / 9;
+// var widthToHeight = 4 / 3;
+var widthToHeight = 16 / 9;
 
 //Canvas to which to draw the panorama
 var pano_canvas = null;
