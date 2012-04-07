@@ -113,6 +113,10 @@ body {
   font-size: 18px;
 }
 
+#slideout h2 {
+  font-size: 14px;
+}
+
 #slideout_inner {
   position: fixed;
   top: 40px;
@@ -125,7 +129,7 @@ body {
   background: rgba(0, 33, 95, 0.5);
   width: 200px;
   padding: 25px;
-  height: 130px;
+  height: 250px;
   text-align: left;
   -webkit-border-radius: 0 0 5px 0;
   -moz-border-radius: 0 0 5px 0;

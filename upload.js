@@ -29,9 +29,17 @@ function handleFileSelect(event) {
 
   setProgress(0);
 
-  var file = event.dataTransfer.files[0];
+  var file = null;
+  switch(event.type) {
+    case "drop":
+      file = event.dataTransfer.files[0];
+      break;
+    case "change":
+      file = event.target.files[0];
+      break;
+  }
 
-  if (file.type.match('image.*')) {
+  if (file != undefined && file.type.match('image.*')) {
     var reader = new FileReader();
 
     reader.onprogress = updateProgress;

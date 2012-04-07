@@ -39,7 +39,11 @@ function init_pano(canvasId, image){
   window.addEventListener('resize', resizeCanvas, false);
   window.addEventListener('orientationchange', resizeCanvas, false);
 
-  img.src = image;
+  setImage(image);
+}
+
+function setImage(imageData) {
+  img.src = imageData;
 }
 
 function resizeCanvas() {
@@ -66,10 +70,6 @@ function resizeCanvas() {
 
   target = null;
   draw();
-}
-
-function setImage(imageData) {
-  img.src = imageData;
 }
 
 function imageLoaded(){
