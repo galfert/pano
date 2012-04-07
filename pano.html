@@ -6,12 +6,18 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body onload="init_pano('canvas', 'test.jpg'); init_fileupload('image_file');">
+    <div id="slideout">
+      <h1>Menu</h1>
+      <div id="slideout_inner">
+        <div id="upload">
+          <input type="file" id="image_file" name="image_image" />
+          <div id="progress_bar"><div class="percent">0%</div></div>
+        </div>
+      </div>
+    </div>
+
     <div id="container">
       <canvas id="canvas" width='800' height='600'/>
-      <div id="upload">
-        <input type="file" id="image_file" name="image_image" />
-        <div id="progress_bar"><div class="percent">0%</div></div>
-      </div>
     </div>
   </body>
 </html>
