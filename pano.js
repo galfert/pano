@@ -1,6 +1,7 @@
 var FPS = 30;
 var DEG2RAD = Math.PI/180.0;
 var widthToHeight = 4 / 3;
+// var widthToHeight = 16 / 9;
 
 //Canvas to which to draw the panorama
 var pano_canvas = null;
@@ -11,8 +12,9 @@ var source = null;
 var mouseIsDown = false;
 var mouseDownPosLastX = 0;
 var mouseDownPosLastY = 0;
+var displayMenu = true;
 var displayInfo = false;
-var highquality = true;
+var displayHelp = false;
 
 //Camera state
 var base_heading = 0;
@@ -116,9 +118,24 @@ function mouseScroll(e){
 }
 
 function keyDown(e) {
-  if(e.keyCode==73) { //i==73 Info
-    displayInfo = !displayInfo;
-    draw();
+  switch(e.keyCode) {
+    // i = info
+    case 73:
+      displayInfo = !displayInfo;
+      draw();
+      break;
+    // m = menu
+    case 77:
+      displayMenu = !displayMenu;
+      draw();
+      break;
+    // ? = help
+    case 191:
+      displayHelp = !displayHelp;
+      draw();
+      break;
+    default:
+      console.log("key: ", e.keyCode);
   }
 }
 
@@ -377,16 +394,49 @@ function draw(){
     renderPanorama(pano_canvas);
     var endTime = new Date();
 
-    //draw info text
-    if(displayInfo == true){
-      ctx.fillStyle = "rgba(255,255,255,0.75)";
-      drawRoundedRect(ctx, 20, pano_canvas.height-60-20, 180, 60, 7);
+    if (displayMenu) {
+      drawMenu(ctx);
+    }
 
-      ctx.fillStyle = "rgba(0, 0, 0, 1)";
-      ctx.font="10pt helvetica";
-      ctx.fillText("Canvas = " +  pano_canvas.width + "x" + pano_canvas.height,30,pano_canvas.height-60);
-      ctx.fillText("Image size = " + img.width + "x" + img.height,30,pano_canvas.height-45);
-      ctx.fillText("FPS = " + ((endTime.getTime()-startTime.getTime())).toFixed(1),30,pano_canvas.height-30);
+    if (displayInfo) {
+      drawInfo(ctx, startTime, endTime);
+    }
+
+    if (displayHelp) {
+      drawHelp(ctx);
     }
   }
+}
+
+function drawInfo(ctx, startTime, endTime) {
+  ctx.fillStyle = "rgba(255,255,255,0.4)";
+  drawRoundedRect(ctx, 20, pano_canvas.height-60-20, 180, 60, 7);
+
+  ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+  ctx.font="10pt helvetica";
+
+  ctx.fillText("Canvas = " +  pano_canvas.width + "x" + pano_canvas.height, 30, pano_canvas.height-60);
+  ctx.fillText("Image size = " + img.width + "x" + img.height, 30, pano_canvas.height-45);
+  ctx.fillText("FPS = " + ((endTime.getTime()-startTime.getTime())).toFixed(1), 30, pano_canvas.height-30);
+}
+
+function drawHelp(ctx) {
+  ctx.fillStyle = "rgba(255,255,255,0.4)";
+  drawRoundedRect(ctx, 20, 50, 180, 60, 7);
+
+  ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+  ctx.font="10pt helvetica";
+
+  ctx.fillText("m - Toggle menu on/off", 30, 70);
+  ctx.fillText("i   - Toggle info on/off", 30, 85);
+  ctx.fillText("?  - Toggle help on/off", 30, 100);
+}
+
+function drawMenu(ctx) {
+  ctx.fillStyle = "rgba(30, 30, 30, 0.4)";
+  ctx.fillRect(0, 0, pano_canvas.width, 30);
+
+  ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+  ctx.font = "10pt Helvetica";
+  ctx.fillText("Press ? for help", 10, 20);
 }
