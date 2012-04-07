@@ -5,6 +5,42 @@ html, body {
 
 body {
   background-color: #000;
+  font-family: "Liberation Sans", "Helvetica", "Arial", "Lucida Grande", "Verdana", "Gill Sans", sans-serif;
+}
+
+@font-face {
+  font-family: 'Liberation Sans';
+  src: url('/fonts/LiberationSans-Bold-webfont.eot');
+  src: local('☺'), url('/fonts/LiberationSans-Bold-webfont.woff') format('woff'), url('/fonts/LiberationSans-Bold-webfont.ttf') format('truetype'), url('/fonts/LiberationSans-Bold-webfont.svg#webfontX4pGz9fc') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Liberation Sans';
+  src: url('/fonts/LiberationSans-BoldItalic-webfont.eot');
+  src: local('☺'), url('/fonts/LiberationSans-BoldItalic-webfont.woff') format('woff'), url('/fonts/LiberationSans-BoldItalic-webfont.ttf') format('truetype'), url('/fonts/LiberationSans-BoldItalic-webfont.svg#webfontX4pGz9fc') format('svg');
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: 'Liberation Sans';
+  src: url('/fonts/LiberationSans-Italic-webfont.eot');
+  src: local('☺'), url('/fonts/LiberationSans-Italic-webfont.woff') format('woff'), url('/fonts/LiberationSans-Italic-webfont.ttf') format('truetype'), url('/fonts/LiberationSans-Italic-webfont.svg#webfontX4pGz9fc') format('svg');
+  font-weight: 400;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: 'Liberation Sans';
+  src: url('/fonts/LiberationSans-Regular-webfont.eot');
+  src: local('☺'), url('/fonts/LiberationSans-Regular-webfont.woff') format('woff'), url('/fonts/LiberationSans-Regular-webfont.ttf') format('truetype'), url('/fonts/LiberationSans-Regular-webfont.svg#webfontX4pGz9fc') format('svg');
+  font-weight: 400;
+  font-style: normal;
 }
 
 #container {
