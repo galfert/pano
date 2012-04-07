@@ -16,8 +16,7 @@ function setProgress(percent) {
 
 function updateProgress(event) {
   if (event.lengthComputable) {
-    var percentLoaded = Math.rount((event.loaded / event.total) * 100);
-    console.log(percentLoaded);
+    var percentLoaded = Math.round((event.loaded / event.total) * 100);
     if (percentLoaded < 100) {
       setProgress(percentLoaded);
     }
